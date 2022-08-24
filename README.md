@@ -1,18 +1,17 @@
 # SSAM - Garbage collection days in Home assistant
 
 Instructions:
-Download the ssam.yaml file and place in your home assistant configuration folder or in a subfolder.
+1) Download the ssam.yaml file and place in your home assistant configuration folder or in a subfolder.
 
-Update with your home address in the rest sensor resource template.  
-Replace `Streetname 1, City (12345)` with your address and code (don't remove the quotes).  
+2) Search using this page to get your full address and code, then copy in to the configuration.
+https://edpfuture.ssam.se/FutureWeb/SimpleWastePickup/Simplewastepickup  
 
-Search using this page to get your full address, then copy-paste in to the configuration.
-https://edpfuture.ssam.se/FutureWeb/SimpleWastePickup/Simplewastepickup
+3) Update the row for the rest sensor resource template:
+Replace `Streetname 1, City (12345)` with your address and code (don't remove surrounding quotes).  
 
-The resource template should look something like this:
-`resource_template: https://edpfuture.ssam.se/FutureWeb/SimpleWastePickup/GetWastePickupSchedule?address={{ 'Streetname 1, City (12345)' | urlencode()}}`
 
-Add in configuration.yaml:
+
+4) Add in configuration.yaml:
 
 ```
 homeassistant:
@@ -21,7 +20,7 @@ homeassistant:
 ```
 
 
-Example automations to remind you about the garbage collection on the evening before: 
+5) Example automations to remind you about the garbage collection on the evening before: 
 ```
 - id: ac22a80d775d4cbba83e174f0fc75dd4
   alias: Påminn om sophämtning 1
