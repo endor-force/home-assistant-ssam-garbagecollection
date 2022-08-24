@@ -1,0 +1,29 @@
+## This will get the next garbage collection dates from SSAM - Södra Smålands Avfall och Miljö.
+##
+## You need to set your address in the resource template section.
+## The full address including the code such as this example: 'Storgatan 9A, Storstaden (12345)'
+##
+## Search your address on this page and copy the results in to below configuration.
+## https://edpfuture.ssam.se/FutureWeb/SimpleWastePickup/Simplewastepickup
+
+
+
+sensor:
+
+  - platform: rest
+    name: Sophämtning kärl 1
+    resource_template: https://edpfuture.ssam.se/FutureWeb/SimpleWastePickup/GetWastePickupSchedule?address={{ 'Streetname 1, City (12345)' | urlencode()}}
+    method: GET
+    value_template: '{{ as_timestamp(value_json["RhServices"][0]["NextWastePickup"].title()) | timestamp_local() }}'
+    scan_interval: 43200 # Refresh values every 12 hours
+    device_class: timestamp
+    json_attributes_path: "$.RhServices[1]"
+    json_attributes:
+      - NextWastePickup
+
+  - platform: template
+    sensors:
+      sophamtning_karl_2:
+        value_template: '{{ as_timestamp(states.sensor.sophamtning_karl_1.attributes["NextWastePickup"]) | timestamp_local() }}'
+        friendly_name: Sophämtning kärl 2
+        device_class: timestamp
