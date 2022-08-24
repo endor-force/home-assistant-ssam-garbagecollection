@@ -11,7 +11,7 @@ Replace `Streetname 1, City (12345)` with your address and code (don't remove su
 
 
 
-4) Add in configuration.yaml (assuming the ssam.yaml file is in the subfolder `packages`:
+4) Add in configuration.yaml (assuming the ssam.yaml file is in a subfolder `packages`):
 
 ```
 homeassistant:
